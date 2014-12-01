@@ -54,57 +54,57 @@ font = Font.load("fonts/mario.ttf")
 font:setPixelSizes(25,25)
 
 player = {
-	x = 20;
-	y = 100;
-	img = p1;
-	walk = 0;
+  x = 20;
+  y = 100;
+  img = p1;
+  walk = 0;
 }
 
 opponent = {
-	x = - 50;
-	y = 100;
-	img = o1;
-	walk = 1;
+  x = - 50;
+  y = 100;
+  img = o1;
+  walk = 1;
 }
 
 pp = pp + pp2 + pp3 + pp4
 op = op + op2 + pp3 + pp4
 
 while true do
-	screen:clear()
-	pad = Controls.read()
-	screen:blit(0,0,wall)
+  screen:clear()
+  pad = Controls.read()
+  screen:blit(0,0,wall)
 
-	if pp >= op then
-		screen:fontPrint(font,120,30,"Congratulations !", Color.new(0,0,255))
-		screen:fontPrint(font,50,55,"You've Won The Cup", Color.new(0,0,255))
-		screen:fontPrint(font,70,100,"Your Score : "..pp.." Points", Color.new(255,255,0))
-		screen:fontPrint(font,70,130,"Opponent Score : "..op.." Points", Color.new(255,255,0))
-	elseif op > pp then
-		screen:fontPrint(font,120,30,"What A Shame !", Color.new(0,0,255))
-		screen:fontPrint(font,50,55,"You've lost the Cup", Color.new(0,0,255))
-		screen:fontPrint(font,70,130,"Your Score : "..pp.." Points", Color.new(255,255,0))
-		screen:fontPrint(font,70,100,"Opponent Score : "..op.." Points", Color.new(255,255,0))
-	end
+  if pp >= op then
+    screen:fontPrint(font,120,30,"Congratulations !", Color.new(0,0,255))
+    screen:fontPrint(font,50,55,"You've Won The Cup", Color.new(0,0,255))
+    screen:fontPrint(font,70,100,"Your Score : "..pp.." Points", Color.new(255,255,0))
+    screen:fontPrint(font,70,130,"Opponent Score : "..op.." Points", Color.new(255,255,0))
+  elseif op > pp then
+    screen:fontPrint(font,120,30,"What A Shame !", Color.new(0,0,255))
+    screen:fontPrint(font,50,55,"You've lost the Cup", Color.new(0,0,255))
+    screen:fontPrint(font,70,130,"Your Score : "..pp.." Points", Color.new(255,255,0))
+    screen:fontPrint(font,70,100,"Opponent Score : "..op.." Points", Color.new(255,255,0))
+  end
 
-	if pad:cross() and op > pp then 
-		wall = nil
-		t1 = nil
-		font = nil
-		collectgarbage()
-		dofile("menu.lua") 
-	elseif pad:cross() and pp >= op then 
-		file = io.open("data/hack.spl", "w")
-		file:write("unlocked")
-		file:close()
-		wall = nil
-		t1 = nil
-		font = nil
-		collectgarbage()
-		dofile("menu.lua") 
-	end
+  if pad:cross() and op > pp then 
+    wall = nil
+    t1 = nil
+    font = nil
+    collectgarbage()
+    dofile("menu.lua") 
+  elseif pad:cross() and pp >= op then 
+    file = io.open("data/hack.spl", "w")
+    file:write("unlocked")
+    file:close()
+    wall = nil
+    t1 = nil
+    font = nil
+    collectgarbage()
+    dofile("menu.lua") 
+  end
 
-	screen.waitVblankStart()
-	screen.flip()
+  screen.waitVblankStart()
+  screen.flip()
 end
 

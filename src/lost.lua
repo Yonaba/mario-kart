@@ -35,68 +35,68 @@ font = Font.load("fonts/mario.ttf")
 font:setPixelSizes(25,25)
 
 player = {
-	x = - 50;
-	y = 100;
-	img = p1;
-	walk = 0;
+  x = - 50;
+  y = 100;
+  img = p1;
+  walk = 0;
 }
 
 opponent = {
-	x = 20;
-	y = 100;
-	img = o1;
-	walk = 1;
+  x = 20;
+  y = 100;
+  img = o1;
+  walk = 1;
 }
 
 
 while true do
-	screen:clear()
-	pad = Controls.read()
-	screen:blit(0,0,wall)
+  screen:clear()
+  pad = Controls.read()
+  screen:blit(0,0,wall)
 
-	player.x = player.x + 3
-	opponent.x = opponent.x + 3
-	if player.x >= 520 then player.x = - 50 end
-	if opponent.x >= 520 then opponent.x = - 50 end
-	player.walk = player.walk + 1.5
-	opponent.walk = opponent.walk + 1.5
+  player.x = player.x + 3
+  opponent.x = opponent.x + 3
+  if player.x >= 520 then player.x = - 50 end
+  if opponent.x >= 520 then opponent.x = - 50 end
+  player.walk = player.walk + 1.5
+  opponent.walk = opponent.walk + 1.5
 
-	if player.walk >= 0 then player.img = p1 end
-	if player.walk >= 5 then player.img = p2 end
-	if player.walk >= 10 then player.img = p3 end
-	if player.walk >= 15 then player.img = p4 end
-	if player.walk >= 20 then player.walk = 0 end
+  if player.walk >= 0 then player.img = p1 end
+  if player.walk >= 5 then player.img = p2 end
+  if player.walk >= 10 then player.img = p3 end
+  if player.walk >= 15 then player.img = p4 end
+  if player.walk >= 20 then player.walk = 0 end
 
-	if opponent.walk >= 0 then opponent.img = p1 end
-	if opponent.walk >= 5 then opponent.img = p2 end
-	if opponent.walk >= 10 then opponent.img = p3 end
-	if opponent.walk >= 15 then opponent.img = p4 end
-	if opponent.walk >= 20 then opponent.walk = 0 end
+  if opponent.walk >= 0 then opponent.img = p1 end
+  if opponent.walk >= 5 then opponent.img = p2 end
+  if opponent.walk >= 10 then opponent.img = p3 end
+  if opponent.walk >= 15 then opponent.img = p4 end
+  if opponent.walk >= 20 then opponent.walk = 0 end
 
-	screen:fontPrint(font,120,30,"What A Shame !", Color.new(0,0,255))
-	screen:fontPrint(font,50,55,"You've Lost The race !", Color.new(0,0,255))
+  screen:fontPrint(font,120,30,"What A Shame !", Color.new(0,0,255))
+  screen:fontPrint(font,50,55,"You've Lost The race !", Color.new(0,0,255))
 
-	screen:fontPrint(font,40,220,"Square: Play Another Race", Color.new(255,255,0))
-	screen:fontPrint(font,170,250,"Start: Menu", Color.new(255,255,0))
+  screen:fontPrint(font,40,220,"Square: Play Another Race", Color.new(255,255,0))
+  screen:fontPrint(font,170,250,"Start: Menu", Color.new(255,255,0))
 
-	if pad:start() then 
-		wall = nil
-		t1 = nil
-		font = nil
-		collectgarbage()
-		dofile("menu2.lua")
-		elseif pad:square() then 
-		wall = nil
-		t1 = nil
-		font = nil
-		collectgarbage()
-		dofile("c_player.lua") 
-	end
+  if pad:start() then 
+    wall = nil
+    t1 = nil
+    font = nil
+    collectgarbage()
+    dofile("menu2.lua")
+    elseif pad:square() then 
+    wall = nil
+    t1 = nil
+    font = nil
+    collectgarbage()
+    dofile("c_player.lua") 
+  end
 
-	screen:blit(player.x,player.y,player.img)
-	screen:blit(opponent.x,opponent.y,opponent.img)
-	
-	screen.waitVblankStart()
-	screen.flip()
+  screen:blit(player.x,player.y,player.img)
+  screen:blit(opponent.x,opponent.y,opponent.img)
+  
+  screen.waitVblankStart()
+  screen.flip()
 end
 
